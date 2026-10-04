@@ -1,0 +1,46 @@
+{
+  "name": "field-service-dispatch-and-replanning-agent",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "server": "node server/src/server.js",
+    "seed": "node server/src/scripts/seed.js",
+    "test": "node tests/phase2/test_phase2_verification.js && node tests/phase3/test_phase3_verification.js && node tests/phase4/test_phase4_backend.js",
+    "test:phase2": "node tests/phase2/test_phase2_verification.js",
+    "test:phase3": "node tests/phase3/test_phase3_verification.js",
+    "test:phase4": "node tests/phase4/test_phase4_backend.js",
+    "test:phase5": "node tests/phase5/test_phase5_gemini_error_scenarios.js",
+    "test:phase5:planner": "node tests/phase5/test_phase5_gemini_planner.js",
+    "test:phase5:persistence": "node tests/phase5/test_phase5_persistence.js",
+    "test:phase6": "node tests/phase6/test_phase6_execution.js",
+    "test:phase7": "node tests/phase7/test_phase7_hardening.js",
+    "test:phase7:workflow": "node tests/phase7/test_phase7_9_workflow.js",
+    "test:phase10": "node tests/phase10/test_phase10_edge_cases.js"
+  },
+  "dependencies": {
+    "@google/genai": "^2.27.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "lucide-react": "^1.51.0",
+    "mongoose": "^9.10.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "autoprefixer": "^10.6.1",
+    "oxlint": "^1.81.0",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^3.4.19",
+    "vite": "^8.3.0"
+  }
+}
