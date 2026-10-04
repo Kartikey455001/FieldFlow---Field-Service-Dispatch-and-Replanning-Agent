@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import connectDB from './config/db.js';
 import healthRoutes from './routes/healthRoutes.js';
 import serviceRequestRoutes from './routes/serviceRequestRoutes.js';
 import technicianRoutes from './routes/technicianRoutes.js';
@@ -31,6 +32,24 @@ app.use(
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Database connection middleware - guarantees active DB connection before executing queries on serverless or traditional servers
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    console.error('[Database Middleware Error]', err.message);
+    return res.status(503).json({
+      success: false,
+      message: 'Database connection is unavailable. Please verify MONGO_URI configuration.',
+      error: {
+        code: 'DATABASE_UNAVAILABLE',
+        message: 'Could not connect to MongoDB Atlas cluster.',
+      },
+    });
+  }
+});
 
 // API Routes
 app.use('/api/health', healthRoutes);
